@@ -13,8 +13,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".InfoActivity"></activity>
         <activity android:name=".HospitalActivity" />
-        <activity android:name=".SplashActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" />
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -37,41 +38,41 @@ public class HospitalActivity extends AppCompatActivity {
 
         hospitales = new ArrayList<>();
         recyclerView = findViewById(R.id.recycleView);
-        jsonRequest();
+        jsonrequest();
     }
 
-    private void jsonRequest(){
-        request = new JsonObjectRequest(Request.Method.GET, JSON_URL, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try{
-                            JSONArray hospitalesJSON = response.getJSONArray("records");
-                            JSONObject jsonObject = null;
-                            for(int i=0; i<hospitalesJSON.length(); i++){
-                                jsonObject = hospitalesJSON.getJSONObject(i);
-                                Hospital hospital = new Hospital();
-                                hospital.setId(jsonObject.getString("recordid"));
-                                JSONObject fieldsJSON = jsonObject.getJSONObject("fields");
-                                hospital.setLatitud(fieldsJSON.getString("latitud"));
-                                hospital.setTitular(fieldsJSON.getString("titular"));
-                                hospital.setNombre(fieldsJSON.getString("nombre"));
-                                hospital.setLongitud(fieldsJSON.getString("longitud"));
-                                hospitales.add(hospital);
-                            }
-                        }
-                        catch (JSONException jsonException){
-                            jsonException.printStackTrace();
-                        }
-                        setRecyclerView(hospitales);
+    private void jsonrequest(){
+        request = new JsonObjectRequest(Request.Method.GET, JSON_URL, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {  Log.i("info", "2bb");
+                try {
+                    JSONArray hospitalesJSON = response.getJSONArray("records");
+                    JSONObject jsonObject = null;
+                    for (int i = 0; i < hospitalesJSON.length(); i++) {
+                        jsonObject = hospitalesJSON.getJSONObject(i);
+                        Hospital hospital = new Hospital();
+                        hospital.setId(jsonObject.getString("recordid"));
+                        JSONObject fieldsJSON = jsonObject.getJSONObject("fields");
+                        hospital.setLatitud(fieldsJSON.getString("latitud"));
+                        hospital.setTitular(fieldsJSON.getString("titular"));
+                        hospital.setNombre(fieldsJSON.getString("nombre"));
+                        hospital.setLongitud(fieldsJSON.getString("longitud"));
+                        hospitales.add(hospital);Log.i("req", "hi");
                     }
-                }, new Response.ErrorListener() {
+                }
+                catch (JSONException jsonException){
+                    jsonException.printStackTrace();
+                }
+                setRecyclerView(hospitales);
+            }
+            }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(), "Error del servidor", Toast.LENGTH_LONG).show();
             }
         });
-
+        String size = String.valueOf(hospitales.size());
+        Log.i("req", size);
         requestQueue = Volley.newRequestQueue(HospitalActivity.this);
         requestQueue.add(request);
     }

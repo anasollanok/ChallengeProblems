@@ -7,13 +7,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.challengeproblems.HospitalActivity;
+import com.example.challengeproblems.MainActivity;
 import com.example.challengeproblems.Model.Hospital;
+import com.example.challengeproblems.R;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class HospitalRecycleAdapter extends RecyclerView.Adapter<HospitalRecycle
     public HospitalRecycleAdapter(Context context, List<Hospital> cards) {
         this.context = context;
         this.hospitales = cards;
-        options = new RequestOptions().centerCrop().placeholder(R.drawable.load_card).error(R.drawable.load_card);
+        options = new RequestOptions().centerCrop().placeholder(R.drawable.load_info).error(R.drawable.load_info);
     }
 
     @NonNull
@@ -33,15 +34,14 @@ public class HospitalRecycleAdapter extends RecyclerView.Adapter<HospitalRecycle
     public HospitalRecycleAdapter.HospitalRecordHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view;
         LayoutInflater inflater = LayoutInflater.from(context);
-        view = inflater.inflate(R.layout.poke_card_item, viewGroup, false);
+        view = inflater.inflate(R.layout.info_hospital_item, viewGroup, false);
         final HospitalRecordHolder hospitalRecordHolder = new HospitalRecordHolder(view);
         hospitalRecordHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Hospital hospital = hospitales.get(hospitalRecordHolder.getAdapterPosition());
                 Toast.makeText(context, hospital.getNombre(), Toast.LENGTH_SHORT).show();
-                Intent it = new Intent(context, MainActivity.class);
-                it.putExtra("pokemon", hospital);
+                Intent it = new Intent(context, HospitalActivity.class);
                 context.startActivity(it);
             }
         });
@@ -55,8 +55,6 @@ public class HospitalRecycleAdapter extends RecyclerView.Adapter<HospitalRecycle
         hospitalRecordHolder.nombre.setText(hospitales.get(i).getNombre());
         hospitalRecordHolder.latitud.setText(hospitales.get(i).getLatitud());
         hospitalRecordHolder.longitud.setText(hospitales.get(i).getLongitud());
-
-        //Glide.with(context).load(hospitales.get(i).getImageUrl()).apply(options).into(pokeRecordHolder.image);
     }
 
     @Override
@@ -66,15 +64,15 @@ public class HospitalRecycleAdapter extends RecyclerView.Adapter<HospitalRecycle
 
     public static class HospitalRecordHolder extends RecyclerView.ViewHolder{
 
-        private String id, titular, nombre, latitud, longitud;
+        private TextView id, titular, nombre, latitud, longitud;
 
         public HospitalRecordHolder(@NonNull View itemView) {
             super(itemView);
-            id = itemView.findViewById(R.id.id_card);
-            titular = itemView.findViewById(R.id.card_name);
-            nombre = itemView.findViewById(R.id.author_card);
-            latitud = itemView.findViewById(R.id.author_card);
-            longitud = itemView.findViewById(R.id.card);
+            id = itemView.findViewById(R.id.id);
+            titular = itemView.findViewById(R.id.titular);
+            nombre = itemView.findViewById(R.id.nombre);
+            latitud = itemView.findViewById(R.id.latitud);
+            longitud = itemView.findViewById(R.id.longitud);
         }
     }
 }
