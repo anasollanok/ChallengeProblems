@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.request.RequestOptions;
 import com.example.challengeproblems.HospitalActivity;
-import com.example.challengeproblems.MainActivity;
+import com.example.challengeproblems.InfoActivity;
 import com.example.challengeproblems.Model.Hospital;
 import com.example.challengeproblems.R;
 
@@ -23,9 +23,9 @@ public class HospitalRecycleAdapter extends RecyclerView.Adapter<HospitalRecycle
     private List<Hospital> hospitales;
     RequestOptions options;
 
-    public HospitalRecycleAdapter(Context context, List<Hospital> cards) {
+    public HospitalRecycleAdapter(Context context, List<Hospital> hospitales) {
         this.context = context;
-        this.hospitales = cards;
+        this.hospitales = hospitales;
         options = new RequestOptions().centerCrop().placeholder(R.drawable.load_info).error(R.drawable.load_info);
     }
 
@@ -41,7 +41,8 @@ public class HospitalRecycleAdapter extends RecyclerView.Adapter<HospitalRecycle
             public void onClick(View view) {
                 Hospital hospital = hospitales.get(hospitalRecordHolder.getAdapterPosition());
                 Toast.makeText(context, hospital.getNombre(), Toast.LENGTH_SHORT).show();
-                Intent it = new Intent(context, HospitalActivity.class);
+                Intent it = new Intent(context, InfoActivity.class);
+                it.putExtra("hospital", hospital);
                 context.startActivity(it);
             }
         });

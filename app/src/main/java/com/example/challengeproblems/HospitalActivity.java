@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -44,7 +43,7 @@ public class HospitalActivity extends AppCompatActivity {
     private void jsonrequest(){
         request = new JsonObjectRequest(Request.Method.GET, JSON_URL, null, new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(JSONObject response) {  Log.i("info", "2bb");
+            public void onResponse(JSONObject response) {
                 try {
                     JSONArray hospitalesJSON = response.getJSONArray("records");
                     JSONObject jsonObject = null;
@@ -57,7 +56,7 @@ public class HospitalActivity extends AppCompatActivity {
                         hospital.setTitular(fieldsJSON.getString("titular"));
                         hospital.setNombre(fieldsJSON.getString("nombre"));
                         hospital.setLongitud(fieldsJSON.getString("longitud"));
-                        hospitales.add(hospital);Log.i("req", "hi");
+                        hospitales.add(hospital);
                     }
                 }
                 catch (JSONException jsonException){
@@ -71,8 +70,6 @@ public class HospitalActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Error del servidor", Toast.LENGTH_LONG).show();
             }
         });
-        String size = String.valueOf(hospitales.size());
-        Log.i("req", size);
         requestQueue = Volley.newRequestQueue(HospitalActivity.this);
         requestQueue.add(request);
     }

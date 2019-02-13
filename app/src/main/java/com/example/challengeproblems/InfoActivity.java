@@ -23,7 +23,6 @@ public class InfoActivity extends AppCompatActivity {
         titular = findViewById(R.id.titular);
         latitud = findViewById(R.id.latitud);
         longitud = findViewById(R.id.longitud);
-        //RequestOptions options = new RequestOptions().centerCrop().placeholder(R.drawable.load_info).error(R.drawable.load_info);
         id.setText(hospital.getId());
         nombre.setText(hospital.getNombre());
         titular.setText(hospital.getTitular());

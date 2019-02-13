@@ -1,55 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".InfoActivity">
-
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="150dp"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp"
+        android:padding="8dp"
+        android:background="#FFF"
+        android:id="@+id/container">
 
         <TextView
             android:id="@+id/id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            tools:layout_editor_absoluteX="86dp"
-            tools:layout_editor_absoluteY="90dp" />
+            android:text="Record ID"
+            android:textSize="18sp"
+            android:layout_marginTop="5dp" />
 
-        <TextView
-            android:id="@+id/nombre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            tools:layout_editor_absoluteX="86dp"
-            tools:layout_editor_absoluteY="133dp" />
+    <TextView
+        android:id="@+id/nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre"
+        android:textStyle="bold" />
 
         <TextView
             android:id="@+id/titular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            tools:layout_editor_absoluteX="86dp"
-            tools:layout_editor_absoluteY="187dp" />
+            android:text="Titular" />
 
         <TextView
             android:id="@+id/latitud"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            tools:layout_editor_absoluteX="86dp"
-            tools:layout_editor_absoluteY="249dp" />
+            android:text="Latitud" />
 
         <TextView
             android:id="@+id/longitud"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            tools:layout_editor_absoluteX="86dp"
-            tools:layout_editor_absoluteY="303dp" />
+            android:text="Longitud" />
     </LinearLayout>
-
-</android.support.constraint.ConstraintLayout>
