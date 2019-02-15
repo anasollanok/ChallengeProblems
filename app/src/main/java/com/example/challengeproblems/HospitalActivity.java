@@ -46,31 +46,25 @@ public class HospitalActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    Log.i("response", response.toString());
                     JSONArray hospitalesJSON = response.getJSONArray("records");
-                    Log.i("hospitalesjson", hospitalesJSON.toString());
                     JSONObject jsonObject = null;
                     for (int i = 0; i < hospitalesJSON.length(); i++) {
                         jsonObject = hospitalesJSON.getJSONObject(i);
                         Hospital hospital = new Hospital();
                         hospital.setId(jsonObject.getString("recordid"));
                         JSONObject fieldsJSON = jsonObject.getJSONObject("fields");
-                        Log.i("fields", fieldsJSON.toString());
                         hospital.setLatitud(fieldsJSON.getString("latitud"));
                         hospital.setTitular(fieldsJSON.getString("titular"));
                         hospital.setNombre(fieldsJSON.getString("nombre"));
                         hospital.setLongitud(fieldsJSON.getString("longitud"));
                         hospital.setImage(fieldsJSON.getString("imageURL"));
                         hospitales.add(hospital);
-                        String size = Integer.toString(hospitales.size());
-                        Log.i("size of hospitales", size);
                     }
-                    setRecyclerView(hospitales);
                 }
                 catch (JSONException jsonException){
                     jsonException.printStackTrace();
                 }
-
+                setRecyclerView(hospitales);
             }
             }, new Response.ErrorListener() {
             @Override

@@ -21,7 +21,7 @@ import com.example.challengeproblems.R;
 import java.util.List;
 
 public class HospitalRecycleAdapter extends RecyclerView.Adapter<HospitalRecycleAdapter.HospitalRecordHolder>{
-    private static Context context;
+    private Context context;
     private List<Hospital> hospitales;
     RequestOptions options;
 
@@ -61,7 +61,10 @@ public class HospitalRecycleAdapter extends RecyclerView.Adapter<HospitalRecycle
         hospitalRecordHolder.longitud.setText(hospitales.get(i).getLongitud());
 
         //Glide.with(context).load(hospitales.get(i).getImage()).apply(options).into(hospitalRecordHolder.image);
-        Glide.with(context.getApplicationContext()).load("https://images.pexels.com/photos/207962/pexels-photo-207962.jpeg").into(hospitalRecordHolder.image);
+        //Glide.with(context.getApplicationContext()).load("https://images.pexels.com/photos/207962/pexels-photo-207962.jpeg").into(hospitalRecordHolder.image);
+
+        if(hospitalRecordHolder.image == null) Log.i("hola is null", "null");
+        Glide.with(context).load(hospitales.get(i).getImage()).apply(options).into(hospitalRecordHolder.image);
     }
 
     @Override
@@ -81,7 +84,7 @@ public class HospitalRecycleAdapter extends RecyclerView.Adapter<HospitalRecycle
             nombre = itemView.findViewById(R.id.nombre);
             latitud = itemView.findViewById(R.id.latitud);
             longitud = itemView.findViewById(R.id.longitud);
-            image = itemView.findViewById(R.id.imageView);
+            image = itemView.findViewById(R.id.image);
         }
     }
 }
