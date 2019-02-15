@@ -16,14 +16,15 @@ public class InfoActivity extends AppCompatActivity {
         loadInfo(hospital);
     }
 
+
     private void loadInfo(Hospital hospital){
         TextView id, nombre, titular, latitud, longitud;
-        id = findViewById(R.id.id);
+        //id = findViewById(R.id.id);
         nombre = findViewById(R.id.nombre);
         titular = findViewById(R.id.titular);
         latitud = findViewById(R.id.latitud);
         longitud = findViewById(R.id.longitud);
-        id.setText(hospital.getId());
+        //id.setText(hospital.getId());
         nombre.setText(hospital.getNombre());
         titular.setText(hospital.getTitular());
         latitud.setText(hospital.getLatitud());

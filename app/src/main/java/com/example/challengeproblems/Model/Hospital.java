@@ -1,5 +1,8 @@
 package com.example.challengeproblems.Model;
 
+import android.text.Html;
+import android.text.Spanned;
+
 import java.io.Serializable;
 
 public class Hospital implements Serializable {
@@ -8,6 +11,8 @@ public class Hospital implements Serializable {
 
     public Hospital() {
     }
+
+
 
     public Hospital(String id, String titular, String nombre, String latitud, String longitud) {
         this.id = id;

@@ -51,7 +51,7 @@ public class HospitalRecycleAdapter extends RecyclerView.Adapter<HospitalRecycle
 
     @Override
     public void onBindViewHolder(@NonNull HospitalRecycleAdapter.HospitalRecordHolder hospitalRecordHolder, int i) {
-        hospitalRecordHolder.id.setText(hospitales.get(i).getId());
+        //hospitalRecordHolder.id.setText(hospitales.get(i).getId());
         hospitalRecordHolder.titular.setText(hospitales.get(i).getTitular());
         hospitalRecordHolder.nombre.setText(hospitales.get(i).getNombre());
         hospitalRecordHolder.latitud.setText(hospitales.get(i).getLatitud());
@@ -69,7 +69,7 @@ public class HospitalRecycleAdapter extends RecyclerView.Adapter<HospitalRecycle
 
         public HospitalRecordHolder(@NonNull View itemView) {
             super(itemView);
-            id = itemView.findViewById(R.id.id);
+            //id = itemView.findViewById(R.id.id);
             titular = itemView.findViewById(R.id.titular);
             nombre = itemView.findViewById(R.id.nombre);
             latitud = itemView.findViewById(R.id.latitud);

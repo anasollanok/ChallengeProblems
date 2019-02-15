@@ -40,6 +40,7 @@ public class HospitalActivity extends AppCompatActivity {
         jsonrequest();
     }
 
+
     private void jsonrequest(){
         request = new JsonObjectRequest(Request.Method.GET, JSON_URL, null, new Response.Listener<JSONObject>() {
             @Override
