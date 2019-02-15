@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -24,7 +25,7 @@ import java.util.List;
 
 public class HospitalActivity extends AppCompatActivity {
 
-    private final String JSON_URL = "https://datos.cdmx.gob.mx/api/records/1.0/search/?dataset=hospitales-y-centros-de-salud";
+    private final String JSON_URL = "https://storage.googleapis.com/photomap.appspot.com/db.json";
     private JsonObjectRequest request;
     private RequestQueue requestQueue;
     private List<Hospital> hospitales;
@@ -40,30 +41,36 @@ public class HospitalActivity extends AppCompatActivity {
         jsonrequest();
     }
 
-
     private void jsonrequest(){
         request = new JsonObjectRequest(Request.Method.GET, JSON_URL, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
+                    Log.i("response", response.toString());
                     JSONArray hospitalesJSON = response.getJSONArray("records");
+                    Log.i("hospitalesjson", hospitalesJSON.toString());
                     JSONObject jsonObject = null;
                     for (int i = 0; i < hospitalesJSON.length(); i++) {
                         jsonObject = hospitalesJSON.getJSONObject(i);
                         Hospital hospital = new Hospital();
                         hospital.setId(jsonObject.getString("recordid"));
                         JSONObject fieldsJSON = jsonObject.getJSONObject("fields");
+                        Log.i("fields", fieldsJSON.toString());
                         hospital.setLatitud(fieldsJSON.getString("latitud"));
                         hospital.setTitular(fieldsJSON.getString("titular"));
                         hospital.setNombre(fieldsJSON.getString("nombre"));
                         hospital.setLongitud(fieldsJSON.getString("longitud"));
+                        hospital.setImage(fieldsJSON.getString("imageURL"));
                         hospitales.add(hospital);
+                        String size = Integer.toString(hospitales.size());
+                        Log.i("size of hospitales", size);
                     }
+                    setRecyclerView(hospitales);
                 }
                 catch (JSONException jsonException){
                     jsonException.printStackTrace();
                 }
-                setRecyclerView(hospitales);
+
             }
             }, new Response.ErrorListener() {
             @Override
@@ -73,6 +80,7 @@ public class HospitalActivity extends AppCompatActivity {
         });
         requestQueue = Volley.newRequestQueue(HospitalActivity.this);
         requestQueue.add(request);
+
     }
 
     private void setRecyclerView(List<Hospital> hospitales){

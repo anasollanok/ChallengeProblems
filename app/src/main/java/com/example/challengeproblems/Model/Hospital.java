@@ -7,19 +7,20 @@ import java.io.Serializable;
 
 public class Hospital implements Serializable {
 
-    private String id, titular, nombre, latitud, longitud;
+    private String id, titular, nombre, latitud, longitud, image;
 
     public Hospital() {
     }
 
 
 
-    public Hospital(String id, String titular, String nombre, String latitud, String longitud) {
+    public Hospital(String id, String titular, String nombre, String latitud, String longitud, String image) {
         this.id = id;
         this.titular = titular;
         this.nombre = nombre;
         this.latitud = latitud;
         this.longitud = longitud;
+        this.image = image;
     }
 
     public String getId() {
@@ -60,5 +61,13 @@ public class Hospital implements Serializable {
 
     public void setLongitud(String longitud) {
         this.longitud = longitud;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
